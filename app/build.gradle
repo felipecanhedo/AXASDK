@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+apply plugin: 'ca-maa-wrapper-plugin'
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.3"
+    defaultConfig {
+        applicationId "com.ca.axasdk"
+        minSdkVersion 15
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+}
+
+
+afterEvaluate
+{
+    android.applicationVariants.all
+    {
+        variant ->
+            def newWrapperTask = tasks.create(name: "${variant.name}MAAWrap",
+                    type: com.ca.android.wrapper.gradle.CAMAAWrapperTask)
+            newWrapperTask.ext.emmHome = 'C:\\Users\\canfe01\\Desktop\\Santander\\CAMobileAppAnalytics-wrapper\\emm'
+            newWrapperTask.ext.plistFilePath = 'C:\\Users\\canfe01\\Desktop\\Santander\\CAMobileAppAnalytics-wrapper\\hom-http_camdo.plist'
+            newWrapperTask.ext.signConfig ='C:\\Users\\canfe01\\Desktop\\Santander\\CAMobileAppAnalytics-wrapper\\emm\\conf\\jarsigner.properties'
+            newWrapperTask.ext.noResFlag = true
+            //newWrapperTask.ext.verboseFlag = true
+            variant.outputs.each
+                    {
+                        output ->
+                            newWrapperTask.ext.apkFilePath = output.outputFile.toString()
+                            newWrapperTask.dependsOn output.packageApplication
+
+                    }
+
+    }
+}
+

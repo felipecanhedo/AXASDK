@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Application</key>
+	<array>
+		<dict>
+			<key>profileURL</key>
+			<string>http://srvaxahlbnpbr001.bs.br.bsch:443/api/1/urn:ca:tenantId:B5E091F3-1DF3-046D-8113-4082458D6C31/urn:ca:appId:TesteApm/profile</string>
+			<key>baseURL</key>
+			<string>http://srvaxahlbnpbr001.bs.br.bsch:443</string>
+			<key>collectorUploadURL</key>
+			<string>http://srvaxahlbnpbr001.bs.br.bsch:443/api/1/urn:ca:tenantId:B5E091F3-1DF3-046D-8113-4082458D6C31/urn:ca:appId:TesteApm/mobileMetrics</string>
+			<key>appId</key>
+			<string>TesteApm</string>
+			<key>tenantID</key>
+			<string>B5E091F3-1DF3-046D-8113-4082458D6C31</string>
+			<key>appKey</key>
+			<string>29ba1d60-44b2-11e7-83d0-6198685798aa</string>
+		</dict>
+	</array>
+</dict>
+</plist>
